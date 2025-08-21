@@ -1,7 +1,7 @@
 import { User } from '../entities/user.js'
 import { IGenericRepository } from './i-generic.repository.js';
 
-export interface IUserRepistory extends IGenericRepository<User> {
+export interface IUserRepository extends IGenericRepository<User> {
 
     findBooksByAuthorName(author: string): Promise<String[]>;
 
