@@ -1,0 +1,25 @@
+{
+  "name": "library-api",
+  "version": "1.0.0",
+  "description": "A library management API with Onion Architecture",
+  "main": "dist/presentation/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/presentation/server.ts",
+    "start": "npm run build && node dist/presentation/server.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.14.0",
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.3",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    /* Proje Ayarları */
+    "target": "ES2022", // Modern JavaScript sürümüne derle
+    "module": "NodeNext", // Modern Node.js modül sistemini kullan
+    "moduleResolution": "NodeNext", // Modüllerin nasıl bulunacağını belirle
+    "outDir": "./dist", // Derlenmiş dosyaların konulacağı klasör
+    "rootDir": "./src", // Kaynak kodun bulunduğu ana klasör
+    "esModuleInterop": true, // CommonJS ve ES Modülleri arası uyumluluğu sağla
+    "forceConsistentCasingInFileNames": true, // Dosya ismi büyük/küçük harf tutarlılığını zorunlu kıl
+
+    /* Sıkı Tip Kontrolü (En İyi Pratikler) */
+    "strict": true, // Tüm katı tip kontrolü kurallarını etkinleştir
+    "skipLibCheck": true // Bağımlılıkların tip dosyalarını kontrol etme, derlemeyi hızlandırır
+  },
+  "include": ["src/**/*"], // Derlemeye sadece 'src' klasörünü dahil et
+  "exclude": ["node_modules"] // 'node_modules' klasörünü hariç tut
+}
