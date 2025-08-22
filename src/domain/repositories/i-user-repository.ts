@@ -7,5 +7,5 @@ export interface IUserRepository extends IGenericRepository<User> {
 
     update(id: number, data: Partial<Omit<User, 'id'>>): Promise<User>;
 
-    findUserByEmail(emial: string): Promise<User>;
+    findUserByEmail(email: string): Promise< User | null >;
 }
