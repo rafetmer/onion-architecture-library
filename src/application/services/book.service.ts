@@ -36,8 +36,13 @@ export class BookService extends BaseService<Book, CreateBookDto, UpdateBookDto>
         }
     }
 
-    async findByAuthor(author: string): Promise<Book[]> {
+    async findBooksByAuthor(author: string): Promise<Book[]> {
         const books = await this.bookRepository.findBooksByAuthor(author);
         return books;
+    }
+
+    async findAvaliableBooks():Promise<Book[]>{
+        const availableBooks = await this.bookRepository.findAvailableBooks();
+        return availableBooks
     }
 }
