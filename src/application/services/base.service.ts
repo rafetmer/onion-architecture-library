@@ -7,15 +7,15 @@ export abstract class BaseService<T, CreateDto, UpdateDto> {
     // --- GERÇEKTEN GENEL OLAN METOTLAR ---
     // Bu metotlar burada bir kez yazılır ve tüm alt sınıflar tarafından kullanılır.
     async getById(id: number): Promise<T | null> {
-        return this.genericRepository.findById(id);
+        return await this.genericRepository.findById(id);
     }
 
     async getAll(): Promise<T[]> {
-        return this.genericRepository.findAll();
+        return await this.genericRepository.findAll();
     }
 
-    async deleteById(id: number): Promise<void> {
-        return this.genericRepository.delete(id);
+    async delete(id: number): Promise<void> {
+        return await this.genericRepository.delete(id);
     }
 
     // --- ÖZEL OLMASI GEREKEN METOTLAR ---
