@@ -8,11 +8,18 @@ model User {
   loans     Loan[]
 }
 
+enum BookStatus {
+  available
+  loaned
+}
+
+
 model Book {
   id        Int      @id @default(autoincrement())
   title     String
   author    String
   published DateTime
+  status    BookStatus   @default(available)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   loans     Loan[]
@@ -24,6 +31,7 @@ model Loan {
   bookId    Int
   loanedAt  DateTime @default(now())
   returnedAt DateTime?
+  updatedAt DateTime @updatedAt
   
   user      User     @relation(fields: [userId], references: [id])
   book      Book     @relation(fields: [bookId], references: [id])
