@@ -41,8 +41,8 @@ export class BookService extends BaseService<Book, CreateBookDto, UpdateBookDto>
         return books;
     }
 
-    async findAvaliableBooks():Promise<Book[]>{
+    async findAvailableBooks(): Promise<Book[]> {
         const availableBooks = await this.bookRepository.findAvailableBooks();
-        return availableBooks
+        return availableBooks;
     }
 }

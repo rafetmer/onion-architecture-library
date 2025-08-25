@@ -3,3 +3,9 @@ node_modules
 .env
 
 /src/generated/prisma
+LEARNING_LOG.md
+
+prisma/migrations
+.github
+
+.gitignore
