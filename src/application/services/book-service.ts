@@ -1,6 +1,6 @@
 import { Book } from '../../domain/entities/book.js';
-import { IBookRepository } from '../../domain/repositories/i-book.repository.js';
-import { BaseService } from './base.service.js';
+import { IBookRepository } from '../../domain/repositories/i-book-repository.js';
+import { BaseService } from './base-service.js';
 
 export type CreateBookDto = Omit<Book, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateBookDto = Partial<CreateBookDto>;

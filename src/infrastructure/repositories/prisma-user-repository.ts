@@ -1,6 +1,6 @@
 import { User } from '../../domain/entities/user.js';
-import { IUserRepository } from '../../domain/repositories/i-user.repository.js';
-import { PrismaGenericRepository } from './prisma-generic.repository.js';
+import { IUserRepository } from '../../domain/repositories/i-user-repository.js';
+import { PrismaGenericRepository } from './prisma-generic-repository.js';
 import { Prisma } from '@prisma/client';
 
 export class PrismaUserRepository extends PrismaGenericRepository<User> implements IUserRepository {

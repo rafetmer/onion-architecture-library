@@ -1,6 +1,6 @@
 import { Book } from '../../domain/entities/book.js';
-import { IBookRepository } from '../../domain/repositories/i-book.repository.js';
-import { PrismaGenericRepository } from './prisma-generic.repository.js';
+import { IBookRepository } from '../../domain/repositories/i-book-repository.js';
+import { PrismaGenericRepository } from './prisma-generic-repository.js';
 import { Prisma } from '@prisma/client';
 
 export class PrismaBookRepository extends PrismaGenericRepository<Book> implements IBookRepository {

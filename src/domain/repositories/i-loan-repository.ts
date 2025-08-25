@@ -1,5 +1,5 @@
 import { Loan } from '../entities/loan.js';
-import { IGenericRepository } from './i-generic.repository.js';
+import { IGenericRepository } from './i-generic-repository.js';
 
 export interface ILoanRepository extends IGenericRepository<Loan>{
 

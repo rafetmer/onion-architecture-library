@@ -1,6 +1,6 @@
 import { Loan } from '../../domain/entities/loan.js';
-import { ILoanRepository } from '../../domain/repositories/i-loan.repository.js';
-import { PrismaGenericRepository } from './prisma-generic.repository.js';
+import { ILoanRepository } from '../../domain/repositories/i-loan-repository.js';
+import { PrismaGenericRepository } from './prisma-generic-repository.js';
 import { Prisma } from '@prisma/client';
 
 export class PrismaLoanRepository extends PrismaGenericRepository<Loan> implements ILoanRepository {

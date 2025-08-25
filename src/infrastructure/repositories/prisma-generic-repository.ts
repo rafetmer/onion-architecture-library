@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { IGenericRepository } from '../../domain/repositories/i-generic.repository.js';
+import { IGenericRepository } from '../../domain/repositories/i-generic-repository.js';
 
 export abstract class PrismaGenericRepository<T> implements IGenericRepository<T> {
     

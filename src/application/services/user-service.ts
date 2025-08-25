@@ -1,6 +1,6 @@
 import { User } from '../../domain/entities/user.js';
-import { IUserRepository } from '../../domain/repositories/i-user.repository.js';
-import { BaseService } from './base.service.js';
+import { IUserRepository } from '../../domain/repositories/i-user-repository.js';
+import { BaseService } from './base-service.js';
 
 export type CreateUserDto = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateUserDto = Partial<CreateUserDto>;

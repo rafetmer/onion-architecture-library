@@ -1,4 +1,4 @@
-import { IGenericRepository } from '../../domain/repositories/i-generic.repository.js';
+import { IGenericRepository } from '../../domain/repositories/i-generic-repository.js';
 
 export abstract class BaseService<T, CreateDto, UpdateDto> {
     
