@@ -8,4 +8,7 @@ export interface ILoanRepository extends IGenericRepository<Loan>{
     update(id: number, data: Partial<Omit<Loan, 'id'>>): Promise<Loan>;
 
     findActiveLoansByUserId(userId: number): Promise<Loan[]>;
+
+    markAsReturned(loanId: number): Promise<Loan>;
+
 }

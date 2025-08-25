@@ -7,7 +7,7 @@ export interface IBookRepository  extends IGenericRepository<Book>{
     
     findAvailableBooks(): Promise<Book[]>;
 
-    create(data: Omit<Book, 'id' | 'createdAt' | 'updatedAt'>): Promise<Book>;
+    create(data: Omit<Book, 'id' | 'createdAt' | 'updatedAt' | 'status'>): Promise<Book>;
     
     update(id: number, data:Partial<Omit<Book, 'id'>>): Promise<Book>;
 };
