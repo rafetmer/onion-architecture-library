@@ -2,7 +2,7 @@ export class User {
     id: number;
     email: string;
     password: string;
-    name: string | null;
+    name: string;
     createdAt: Date;
     updatedAt: Date | null;
 
@@ -10,7 +10,7 @@ export class User {
         id:number,
         email:string,
         password:string,
-        name:string | null,
+        name:string,
         createdAt:Date,
         updatedAt:Date | null
     ){
