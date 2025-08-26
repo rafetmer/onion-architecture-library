@@ -36,7 +36,7 @@ async create(data: Pick<Loan, 'userId' | 'bookId'>): Promise<Loan> {
             returnedAt: null,
         };
 
-        return this.prisma.loan.update({where:{id}, data});
+        return this.prisma.loan.update({where:{id}, data: loanUpdateInput});
     }
 
     async findActiveLoansByUserId(userId: number): Promise<Loan[]> {
