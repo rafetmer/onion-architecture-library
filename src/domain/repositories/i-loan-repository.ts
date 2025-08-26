@@ -1,16 +1,11 @@
 import { Loan } from '../entities/loan.js';
+import { IGenericRepository } from './i-generic.repository.js';
 
-export interface ILoanRepository {
+export interface ILoanRepository extends IGenericRepository<Loan>{
 
-    findById(id: number): Promise<Loan | null>;
-
-    findAll(): Promise<Loan[]>;
-
-    create(data: Omit<Loan, 'id' | 'loanedAt'>): Promise<Loan>;
-
+    create(data: Pick<Loan, 'userId' | 'bookId'>): Promise<Loan>;
+    
     update(id: number, data: Partial<Omit<Loan, 'id'>>): Promise<Loan>;
-
-    delete(id: number): Promise<void>;
 
     findActiveLoansByUserId(userId: number): Promise<Loan[]>;
 }
