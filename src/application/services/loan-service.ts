@@ -16,7 +16,6 @@ export class LoanService extends BaseService<Loan, CreateLoanDto, UpdateLoanDto>
         super(loanRepository);
     }
 
-
     async create(dto: CreateLoanDto): Promise<Loan>{
         const book = await this.bookRepository.findById(dto.bookId);
         const user = await this.userRepository.findById(dto.userId);
@@ -72,3 +71,4 @@ export class LoanService extends BaseService<Loan, CreateLoanDto, UpdateLoanDto>
     }
 
 }   
+ 
