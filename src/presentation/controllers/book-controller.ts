@@ -17,7 +17,7 @@ export class BookController extends BaseController<Book, CreateBookDto, UpdateBo
             if (!author) {
             res.status(400).json({ message: 'Geçersiz yazar ID formatı' });
                 return;
-            }
+            }   
 
             const books = await this.service.findBooksByAuthor(author);
             if (!books || books.length === 0) {
@@ -31,4 +31,8 @@ export class BookController extends BaseController<Book, CreateBookDto, UpdateBo
             res.status(500).json({ error: message });
         }
     }
+
+    // findAvailableBooks
+
+    
 }

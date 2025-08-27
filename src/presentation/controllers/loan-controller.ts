@@ -11,9 +11,29 @@ export class LoanController extends BaseController<Loan, CreateLoanDto, UpdateLo
         this.service = loanService;
     }
 
+async create(req: Request, res: Response): Promise<void> {
+        try {
+
+            const { bookId } = req.body as { bookId: number };
+            const userId = (req as any).user?.userId;
+            if (!userId || !bookId) {
+                res.status(400).json({ message: 'userId ve bookId gereklidir.' });
+                return;
+            }
+            const createLoanDto: CreateLoanDto = { userId, bookId };
+            const newLoan = await this.service.create(createLoanDto);
+            
+            res.status(201).json(newLoan);
+
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Ödünç alma işlemi başarısız";
+            res.status(400).json({ error: message });
+        }
+    }
+
     async returnBook(req: Request, res: Response): Promise<void> {
         try {
-            const id = req.params.id;
+            const id = Number(req.params.id)    ;
             if (isNaN(id)) {
                 res.status(400).json({ message: 'Geçersiz kitap ID formatı' });
                 return;

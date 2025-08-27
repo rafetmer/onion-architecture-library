@@ -19,8 +19,8 @@ export class AuthController {
     async login(req:Request, res:Response) {
         const { email, password } = req.body;
         try {
-            const user = await this.authService.login(email, password);
-            res.status(200).json(user);
+            const token = await this.authService.login(email, password);
+            res.status(200).json({ token });
         } catch (error) {
             const message = error instanceof Error ? error.message : 'Unknown error'; //TS de error unknown olarak döndüğü icin erroru bi typea atamamız gerekiyor
             res.status(401).json({message});
