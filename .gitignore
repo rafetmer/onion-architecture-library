@@ -9,3 +9,9 @@ prisma/migrations
 .github
 
 .gitignore
+
+dist
+
+TECHNICAL_OVERVIEW.md
+
+.DS_Store
