@@ -9,7 +9,8 @@ export abstract class BaseService<T, CreateDto, UpdateDto> {
     }
 
     async findAll(): Promise<T[]> {
-        return await this.genericRepository.findAll();
+        const items = await this.genericRepository.findAll();
+        return items || [];
     }
 
     async delete(id: number): Promise<void> {
