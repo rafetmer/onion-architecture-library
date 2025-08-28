@@ -42,4 +42,13 @@ export class AuthService {
         const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
         return token;
     }
+
+    async verifyToken(token: string): Promise<any> {
+        try {
+            const decoded = jwt.verify(token, JWT_SECRET);
+            return decoded;
+        } catch (error) {
+            throw new Error('Geçersiz token');
+        }
+    }
 }
