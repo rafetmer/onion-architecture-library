@@ -1,0 +1,24 @@
+# Docker imajına dahil edilmeyecek dosyalar ve klasörler
+
+# Bağımlılıklar
+node_modules
+
+# Derlenmiş kod
+dist
+
+# Log dosyaları
+logs
+*.log
+
+# Ortam değişkenleri dosyası
+.env
+
+# macOS'a özgü dosyalar
+.DS_Store
+
+# Geliştirme ve proje yönetimi dosyaları
+README.md
+.git
+.gitignore
+Dockerfile
+docker-compose.yml

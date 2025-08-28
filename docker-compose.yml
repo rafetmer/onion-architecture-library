@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Veritabanı Servisi
+  db:
+    image: postgres:15-alpine
+    container_name: library_db_container
+    restart: always
+    environment:
+      POSTGRES_USER: postgres      # Veritabanı kullanıcı adı
+      POSTGRES_PASSWORD: password  # Veritabanı şifresi
+      POSTGRES_DB: library_db      # Oluşturulacak veritabanı adı
+    ports:
+      - "5432:5432" # Lokal makinenin 5432 portunu konteynerin 5432 portuna bağla
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Veritabanı verilerini kalıcı hale getir
+
+  # Node.js API Servisi
+  api:
+    build: . # Bu dizindeki Dockerfile'ı kullanarak imaj oluştur
+    container_name: library_api_container
+    restart: always
+    ports:
+      - "3001:3001" # Lokal makinenin 3001 portunu konteynerin 3001 portuna bağla
+    depends_on:
+      - db # API servisini başlatmadan önce db servisinin başlamasını bekle
+    environment:
+      # Docker Compose network'ü içindeki 'db' servisine bağlanmak için
+      DATABASE_URL: "postgresql://postgres:password@db:5432/library_db?schema=public"
+      JWT_SECRET: "BU_ALANI_KESINLIKLE_DEGISTIRIN_COK_GIZLI_BIR_ANAHTAR"
+      # Diğer ortam değişkenleri buraya eklenebilir
+
+volumes:
+  postgres_data: # Veritabanı verilerinin saklanacağı volume
