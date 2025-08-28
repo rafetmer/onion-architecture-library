@@ -1,6 +1,6 @@
 export interface IGenericRepository<T> {
     findById(id: number): Promise<T | null>;
-    findAll(): Promise<T[]>;
+    findAll(): Promise<T[] | null>;
     delete(id: number):Promise<void>;
  
     
