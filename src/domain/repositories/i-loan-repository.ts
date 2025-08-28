@@ -1,5 +1,5 @@
 import { Loan } from '../entities/loan.js';
-import { IGenericRepository } from './i-generic.repository.js';
+import { IGenericRepository } from './i-generic-repository.js';
 
 export interface ILoanRepository extends IGenericRepository<Loan>{
 
@@ -8,4 +8,7 @@ export interface ILoanRepository extends IGenericRepository<Loan>{
     update(id: number, data: Partial<Omit<Loan, 'id'>>): Promise<Loan>;
 
     findActiveLoansByUserId(userId: number): Promise<Loan[]>;
+
+    markAsReturned(loanId: number): Promise<Loan>;
+
 }

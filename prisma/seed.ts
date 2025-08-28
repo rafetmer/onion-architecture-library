@@ -25,7 +25,7 @@ async function main() {
     data: {
       email: 'alice@example.com',
       name: 'Alice',
-      password: passwordAlice,
+      password: passwordAlice
     },
   });
 
@@ -44,6 +44,7 @@ async function main() {
       title: 'The Hobbit',
       author: 'J.R.R. Tolkien',
       published: new Date('1937-09-21'),
+      status: 'loaned'
     },
   });
 
@@ -52,6 +53,7 @@ async function main() {
       title: '1984',
       author: 'George Orwell',
       published: new Date('1949-06-08'),
+      status: 'loaned'
     },
   });
 
@@ -60,6 +62,7 @@ async function main() {
       title: 'Dune',
       author: 'Frank Herbert',
       published: new Date('1965-08-01'),
+      status: 'loaned'
     },
   });
   console.log('Books created.');
@@ -71,6 +74,8 @@ async function main() {
     data: {
       userId: user1.id,
       bookId: book1.id,
+      loanedAt: new Date('2025-07-01T10:00:00Z'),
+      returnedAt: new Date('2025-07-15T15:30:00Z'),
     },
   });
 

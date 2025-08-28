@@ -1,8 +1,8 @@
 import { Loan } from "../../domain/entities/loan.js";
-import { ILoanRepository } from "../../domain/repositories/i-loan.repository.js";
-import { IBookRepository } from "../../domain/repositories/i-book.repository.js";
-import { IUserRepository } from "../../domain/repositories/i-user.repository.js";
-import { BaseService } from "./base.service.js";
+import { ILoanRepository } from "../../domain/repositories/i-loan-repository.js";
+import { IBookRepository } from "../../domain/repositories/i-book-repository.js";
+import { IUserRepository } from "../../domain/repositories/i-user-repository.js";
+import { BaseService } from "./base-service.js";
 
 export type CreateLoanDto = Pick<Loan, 'userId' | 'bookId'>
 export type UpdateLoanDto = Partial<CreateLoanDto>;
@@ -15,7 +15,6 @@ export class LoanService extends BaseService<Loan, CreateLoanDto, UpdateLoanDto>
             ){
         super(loanRepository);
     }
-
 
     async create(dto: CreateLoanDto): Promise<Loan>{
         const book = await this.bookRepository.findById(dto.bookId);
@@ -72,3 +71,4 @@ export class LoanService extends BaseService<Loan, CreateLoanDto, UpdateLoanDto>
     }
 
 }   
+ 

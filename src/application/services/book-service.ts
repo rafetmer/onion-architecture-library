@@ -1,8 +1,8 @@
 import { Book } from '../../domain/entities/book.js';
-import { IBookRepository } from '../../domain/repositories/i-book.repository.js';
-import { BaseService } from './base.service.js';
+import { IBookRepository } from '../../domain/repositories/i-book-repository.js';
+import { BaseService } from './base-service.js';
 
-export type CreateBookDto = Omit<Book, 'id' | 'createdAt' | 'updatedAt'>;
+export type CreateBookDto = Omit<Book, 'id' | 'createdAt' | 'updatedAt' | 'status'>;
 export type UpdateBookDto = Partial<CreateBookDto>;
 
 export class BookService extends BaseService<Book, CreateBookDto, UpdateBookDto> {
@@ -41,8 +41,8 @@ export class BookService extends BaseService<Book, CreateBookDto, UpdateBookDto>
         return books;
     }
 
-    async findAvaliableBooks():Promise<Book[]>{
+    async findAvailableBooks(): Promise<Book[]> {
         const availableBooks = await this.bookRepository.findAvailableBooks();
-        return availableBooks
+        return availableBooks;
     }
 }

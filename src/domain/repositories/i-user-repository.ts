@@ -1,5 +1,5 @@
 import { User } from '../entities/user.js'
-import { IGenericRepository } from './i-generic.repository.js';
+import { IGenericRepository } from './i-generic-repository.js';
 
 export interface IUserRepository extends IGenericRepository<User> {
 

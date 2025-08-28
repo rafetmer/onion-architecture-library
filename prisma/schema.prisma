@@ -2,9 +2,9 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   password  String
-  name      String?
+  name      String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
   loans     Loan[]
 }
 
@@ -21,7 +21,7 @@ model Book {
   published DateTime
   status    BookStatus   @default(available)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
   loans     Loan[]
 }
 
@@ -31,7 +31,7 @@ model Loan {
   bookId    Int
   loanedAt  DateTime @default(now())
   returnedAt DateTime?
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt @default(now())
   
   user      User     @relation(fields: [userId], references: [id])
   book      Book     @relation(fields: [bookId], references: [id])
