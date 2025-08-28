@@ -24,13 +24,26 @@ export class UserService extends BaseService<User, CreateUserDto, UpdateUserDto>
     }
 
     async update(id: number, dto: UpdateUserDto): Promise<User> {
-        const user = await this.userRepository.findById(id);
-        if (!user) {
-           throw new Error(`User with ID ${id} not found. Update failed.`);
-        }
         
-        console.log(`Updating user ${id} with specific logic.`);
-        return this.userRepository.update(id, dto);
+        try{
+            const user = await this.userRepository.findById(id);
+            if (!user) {
+            throw new Error(`User with ID ${id} not found. Update failed.`);
+            }
+            if(dto.email && dto.email !== user.email) {
+                const emailInUse = await this.userRepository.findUserByEmail(dto.email);
+                if (emailInUse) {
+                    throw new Error(`Email '${dto.email}' is already in use.`);
+                }
+            }
+
+            console.log(`Updating user ${id} with specific logic.`);
+            return this.userRepository.update(id, dto);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Unknown error during update';
+            console.error(message);
+            throw new Error(message);
+        }
     }
 
     async findUserByEmail(email: string): Promise<User | null> { // Genellikle bulunamazsa null döner
