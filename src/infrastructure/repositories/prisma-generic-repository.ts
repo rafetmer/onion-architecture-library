@@ -17,7 +17,7 @@ export abstract class PrismaGenericRepository<T> implements IGenericRepository<T
         return this.model.findUnique({ where: { id } });
     }
 
-    async findAll(): Promise<T[]> {
+    async findAll(): Promise<T[] | null > {
         return this.model.findMany();
     }
 
