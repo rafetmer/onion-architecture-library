@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: password  # Veritabanı şifresi
       POSTGRES_DB: library_db      # Oluşturulacak veritabanı adı
     ports:
-      - "5432:5432" # Lokal makinenin 5432 portunu konteynerin 5432 portuna bağla
+      - "5435:5435" # Lokal makinenin 5435 portunu konteynerin 5435 portuna bağla
     volumes:
       - postgres_data:/var/lib/postgresql/data # Veritabanı verilerini kalıcı hale getir
 
@@ -26,8 +26,8 @@ services:
       - db # API servisini başlatmadan önce db servisinin başlamasını bekle
     environment:
       # Docker Compose network'ü içindeki 'db' servisine bağlanmak için
-      DATABASE_URL: "postgresql://postgres:password@db:5432/library_db?schema=public"
-      JWT_SECRET: "BU_ALANI_KESINLIKLE_DEGISTIRIN_COK_GIZLI_BIR_ANAHTAR"
+      DATABASE_URL: "postgresql://postgres:password@db:5435/library_db?schema=public"
+      JWT_SECRET: "supersecretkey"
       # Diğer ortam değişkenleri buraya eklenebilir
 
 volumes:

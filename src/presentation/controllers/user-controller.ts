@@ -1,15 +1,18 @@
 import { Request, Response} from "express";
 import { User  } from "../../domain/entities/user.js";
 import { UserService, CreateUserDto, UpdateUserDto } from "../../application/services/user-service.js";
+import { LoanService } from "../../application/services/loan-service.js";
 import { BaseController } from "./base-controller.js";
 
 
 export class UserController extends BaseController<User, CreateUserDto, UpdateUserDto> {
     protected readonly service: UserService;
+    protected readonly loanService?: LoanService;
 
-    constructor(userService: UserService) {
+    constructor(userService: UserService, loanService?: LoanService) {
         super();
         this.service = userService;
+        this.loanService = loanService;
     }
 
     async findUserByEmail(req: Request, res: Response): Promise<void> {
@@ -85,12 +88,42 @@ export class UserController extends BaseController<User, CreateUserDto, UpdateUs
                 res.status(404).json({ message: 'Profil bilgisi için kullanıcı bulunamadı.' });
                 return;
             }
-            //Güvenlik: Şifreyi yanıttan çıkarıp sonucu döndürüyoruz.
             const { password, ...safeUser } = user;
+            if (this.loanService) {
+                try {
+                    const activeLoans = await this.loanService.findActiveLoansByUserId(userId);
+                    (safeUser as any).loans = activeLoans;
+                } catch (err) {
+                    console.error('Error fetching user loans:', err instanceof Error ? err.message : err);
+                }
+            }
+
             res.status(200).json(safeUser);
+
 
         } catch (error) {
             const message = error instanceof Error ? error.message : "Bilinmeyen hata";
+            res.status(500).json({ error: message });
+        }
+    }
+
+    async getMyLoans(req: Request, res: Response): Promise<void> {
+        try {
+            const userId = (req as any).user?.userId;
+            if (!userId) {
+                res.status(401).json({ message: 'Yetkilendirme başarısız: Kullanıcı kimliği bulunamadı.' });
+                return;
+            }
+
+            if (!this.loanService) {
+                res.status(500).json({ message: 'LoanService not available' });
+                return;
+            }
+
+            const loans = await this.loanService.findActiveLoansByUserId(userId);
+            res.status(200).json(loans);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Bilinmeyen hata';
             res.status(500).json({ error: message });
         }
     }

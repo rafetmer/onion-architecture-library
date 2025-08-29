@@ -38,7 +38,7 @@ async function main(){
   
   const authController = new AuthController(authService);
   const bookController = new BookController(bookService);
-  const userController = new UserController(userService);
+  const userController = new UserController(userService, loanService);
   const loanController = new LoanController(loanService);
 
   const apiRouter = createApiRouter({ authController, userController, bookController, loanController, authService });

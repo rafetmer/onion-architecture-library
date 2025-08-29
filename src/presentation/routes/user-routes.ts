@@ -15,6 +15,7 @@ export const createUserRoutes = (
     router.get('/:id', userController.findById.bind(userController));
     router.get('/email/:email', userController.findUserByEmail.bind(userController));
     router.get('/me/profile', checkAuth, userController.getMyProfile.bind(userController));
+    router.get('/me/loans', checkAuth, userController.getMyLoans.bind(userController));
 
     // Protected routes - yetkilendirme gerektirir
     router.post('/', checkAuth, userController.create.bind(userController));

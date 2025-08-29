@@ -70,5 +70,11 @@ export class LoanService extends BaseService<Loan, CreateLoanDto, UpdateLoanDto>
 
     }
 
+    // Onion uyumu için: controller'lar repository'ye doğrudan erişmemeli.
+    // Bu metot controller'ların kullanıcıya ait aktif ödünçleri çekebilmesini sağlar.
+    async findActiveLoansByUserId(userId: number): Promise<Loan[]> {
+        return this.loanRepository.findActiveLoansByUserId(userId);
+    }
+
 }   
  
